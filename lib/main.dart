@@ -1,44 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:islami_c8_sat/ui/chapter_details/chapter_details_screen.dart';
-import 'package:islami_c8_sat/ui/home/home.dart';
-import 'package:islami_c8_sat/ui/splash/splash.dart';
+import 'package:islam_app/config/application_theme_manager.dart';
+import 'package:islam_app/layout/layout_view.dart';
+import 'package:islam_app/moduls/hadeth/page/hadeth_detials_view.dart';
+import 'package:islam_app/moduls/quran/page/quran_details.dart';
+import 'package:islam_app/moduls/splash/page/splash_view.dart';
 
 void main() {
-  runApp(const MyApplication());
+  runApp(const MyApp());
 }
 
-class MyApplication extends StatelessWidget {
-  const MyApplication({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Isalmi App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          progressIndicatorTheme: const ProgressIndicatorThemeData(
-            color: Color(0xFFB7935F),
-          ),
-          primaryColor: const Color(0xFFB7935F),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Color(0xFFB7935F),
-            selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.white,
-          ),
-          scaffoldBackgroundColor: Colors.transparent,
-          appBarTheme: const AppBarTheme(
-              iconTheme: IconThemeData(color: Colors.black),
-              centerTitle: true,
-              titleTextStyle: TextStyle(
-                  color: Color(0xFF242424),
-                  fontSize: 32,
-                  fontWeight: FontWeight.w500),
-              backgroundColor: Colors.transparent,
-              elevation: 0)),
-      initialRoute: SplashScreen.routeName,
+      theme: ApplicationThemeManager.lightTheme,
+      themeMode: ThemeMode.light,
+      initialRoute: SplashView.routeName,
       routes: {
-        SplashScreen.routeName: (buildContext) => SplashScreen(),
-        HomeScreen.routeName: (buildContext) => HomeScreen(),
-        ChapterDetailsScreen.routeName: (buildContext) => ChapterDetailsScreen()
+        SplashView.routeName: (context) => const SplashView(),
+        LayoutView.routeName: (context) => const LayoutView(),
+        QuranDetailsView.routeName: (context) => const QuranDetailsView(),
+        HadethDetailsView.routeName: (context) => const HadethDetailsView(),
       },
     );
   }
